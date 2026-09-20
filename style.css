@@ -592,3 +592,308 @@ footer {
     font-size: 2.3rem;
   }
 }
+
+/* =========================================================
+   MOBILE RESPONSIVE DESIGN
+   Keeps the full website inside phone screens
+   ========================================================= */
+
+html,
+body {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+img {
+  max-width: 100%;
+}
+
+@media (max-width: 768px) {
+
+  /* Navigation */
+  nav {
+    padding: 10px 12px;
+    min-height: 68px;
+    gap: 8px;
+  }
+
+  .logo-link {
+    gap: 7px;
+    min-width: 0;
+    flex-shrink: 1;
+  }
+
+  .logo-img {
+    width: 40px;
+    height: 40px;
+    flex-shrink: 0;
+  }
+
+  .logo-title {
+    font-size: 1rem;
+    letter-spacing: 1px;
+  }
+
+  .logo-sub {
+    font-size: 0.5rem;
+    letter-spacing: 1.3px;
+  }
+
+  .nav-right-actions {
+    gap: 5px;
+    flex-shrink: 0;
+  }
+
+  .nav-right-actions .btn,
+  .nav-right-actions .btn2,
+  .nav-right-actions .btn-admin {
+    padding: 9px 10px;
+    font-size: 0.7rem;
+    white-space: nowrap;
+  }
+
+  nav ul {
+    display: none;
+  }
+
+  /* Main sections */
+  .services,
+  .gallery,
+  .reviews,
+  #booking,
+  #lookup,
+  #contact,
+  #admin-portal {
+    padding: 70px 16px 45px;
+  }
+
+  .services h2,
+  .gallery h2,
+  .reviews h2,
+  #booking h2,
+  #lookup h2,
+  #contact h2 {
+    font-size: 1.9rem;
+    line-height: 1.25;
+    margin-bottom: 25px;
+  }
+
+  /* Hero */
+  .hero {
+    min-height: auto;
+    padding-top: 90px;
+    padding-bottom: 55px;
+  }
+
+  .hero-overlay {
+    width: 100%;
+    padding: 30px 16px;
+  }
+
+  .hero-main-logo {
+    width: 85%;
+    max-width: 360px;
+  }
+
+  .hero h1 {
+    font-size: 2.2rem;
+    line-height: 1.2;
+  }
+
+  .hero p {
+    font-size: 0.95rem;
+    line-height: 1.5;
+    letter-spacing: 1.5px;
+  }
+
+  .buttons {
+    gap: 10px;
+  }
+
+  .btn,
+  .btn2 {
+    padding: 12px 20px;
+    font-size: 0.9rem;
+  }
+
+  /* Service cards */
+  .cards {
+    grid-template-columns: 1fr;
+    width: 100%;
+    gap: 18px;
+  }
+
+  .card {
+    width: 100%;
+    min-width: 0;
+    padding: 22px;
+    border-radius: 20px;
+  }
+
+  .card h3 {
+    font-size: 1.1rem;
+    line-height: 1.35;
+  }
+
+  .card p {
+    font-size: 0.85rem;
+    line-height: 1.55;
+  }
+
+  .card-footer {
+    gap: 12px;
+  }
+
+  .card-price {
+    font-size: 1.25rem;
+  }
+
+  .btn-sm-book {
+    padding: 8px 14px;
+    font-size: 0.78rem;
+    white-space: nowrap;
+  }
+
+  /* Gallery */
+  .gallery-grid {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+
+  .gallery-card {
+    height: 260px;
+  }
+
+  /* Booking / lookup / admin panels */
+  #booking,
+  #lookup,
+  #admin-portal {
+    margin: 25px 12px;
+    padding-left: 16px;
+    padding-right: 16px;
+    border-radius: 22px;
+  }
+
+  form {
+    width: 100%;
+  }
+
+  input,
+  select,
+  textarea {
+    width: 100%;
+    max-width: 100%;
+    font-size: 16px;
+  }
+
+  .contact-info-grid {
+    grid-template-columns: 1fr;
+    width: 100%;
+  }
+
+  .admin-stats-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .ticket-card {
+    width: 100%;
+    max-width: 100%;
+    padding: 22px 16px;
+  }
+
+  .ticket-code {
+    max-width: 100%;
+    font-size: 1.25rem;
+    padding: 8px 16px;
+    letter-spacing: 2px;
+  }
+
+  /* Footer */
+  footer {
+    padding: 28px 16px;
+    font-size: 0.8rem;
+  }
+
+  /* Prevent long text, links or controls from creating horizontal overflow */
+  h1,
+  h2,
+  h3,
+  h4,
+  p,
+  a,
+  button,
+  input,
+  select,
+  textarea {
+    max-width: 100%;
+  }
+
+  table {
+    min-width: 600px;
+  }
+
+  .table-responsive {
+    width: 100%;
+    overflow-x: auto;
+  }
+
+  /* Toast notification */
+  .toast-box {
+    left: 12px;
+    right: 12px;
+    bottom: 15px;
+    padding: 12px 16px;
+    font-size: 0.82rem;
+  }
+}
+
+@media (max-width: 480px) {
+
+  nav {
+    padding: 8px 9px;
+  }
+
+  .logo-img {
+    width: 36px;
+    height: 36px;
+  }
+
+  .logo-title {
+    font-size: 0.88rem;
+  }
+
+  .logo-sub {
+    font-size: 0.44rem;
+  }
+
+  .nav-right-actions {
+    gap: 4px;
+  }
+
+  .nav-right-actions .btn,
+  .nav-right-actions .btn2,
+  .nav-right-actions .btn-admin {
+    padding: 8px 8px;
+    font-size: 0.62rem;
+  }
+
+  .services,
+  .gallery,
+  .reviews,
+  #booking,
+  #lookup,
+  #contact,
+  #admin-portal {
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+
+  .card {
+    padding: 20px;
+  }
+
+  .hero h1 {
+    font-size: 1.9rem;
+  }
+}
