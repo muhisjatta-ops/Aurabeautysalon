@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aura Beauty Salon - Sukuta Jabang, Gambia</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+  <nav>
+    <a href="#home" class="logo-link">
+      <img src="image/Aura beauty.jpg.jpeg" alt="Aura Logo" class="logo-img">
+      <div class="logo-text-wrap">
+        <span class="logo-title">AURA</span>
+        <span class="logo-sub">Beauty Salon</span>
+      </div>
+    </a>
+
+    <ul>
+      <li><a href="#home" class="active">Home</a></li>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#reviews">Reviews</a></li>
+      <li><a href="#booking">Book</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+
+    <div class="nav-right-actions">
+      <a href="#booking" class="btn" style="padding:10px 22px; font-size:0.85rem;">Book Now</a>
+      <a href="staff.html" class="btn-admin" style="text-decoration:none;">⏱️ Staff</a>
+      <button class="btn-admin" onclick="toggleAdminPortal()">🔒 Admin</button>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero" id="home">
+    <div class="hero-overlay">
+      <img src="image/Aura beauty.jpg.jpeg" alt="Aura Beauty Salon Logo" class="hero-main-logo">
+      <h1>AURA BEAUTY SALON</h1>
+      <p>Beauty • Confidence • Glow</p>
+      
+      <div class="buttons">
+        <a href="#booking" class="btn">✨ Book Appointment</a>
+        <a href="https://wa.me/2202942008" target="_blank" class="btn2">💬 WhatsApp</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services Section -->
+  <section class="services" id="services">
+    <h2>Our Services & Menu</h2>
+    
+    <!-- Filter Category Tabs -->
+    <div class="filter-bar">
+      <button class="filter-btn active" onclick="filterServicesCategory('All', this)">All Services</button>
+      <button class="filter-btn" onclick="filterServicesCategory('Braids & Twists', this)">Braids & Twists</button>
+      <button class="filter-btn" onclick="filterServicesCategory('Lash Extensions', this)">Lash Extensions</button>
+      <button class="filter-btn" onclick="filterServicesCategory('Makeup', this)">Makeup</button>
+      <button class="filter-btn" onclick="filterServicesCategory('Hair Cuts', this)">Hair Cuts</button>
+      <button class="filter-btn" onclick="filterServicesCategory('Nails & Brows', this)">Nails & Brows</button>
+    </div>
+
+    <!-- Cards Grid -->
+    <div id="services-grid" class="cards"></div>
+  </section>
+
+ 
+
+
+
+  <!-- Client Reviews Section -->
+  <section class="reviews" id="reviews">
+    <h2>Client Reviews</h2>
+    <div id="reviews-list"></div>
+
+    <!-- Leave a Review Form -->
+    <div style="max-width:600px; margin:30px auto 0 auto; background:var(--blush-card); padding:25px; border-radius:var(--radius-md); text-align:left; box-shadow:var(--shadow-soft);">
+      <h3 style="margin-bottom:15px; font-family:'Playfair Display', serif; color:var(--onyx-dark);">Leave a Review</h3>
+      <form id="review-form" onsubmit="handleReviewSubmit(event)">
+        <label class="form-label">Your Name</label>
+        <input type="text" id="review-author" required placeholder="e.g. Binta S.">
+        
+        <label class="form-label">Your Review</label>
+        <textarea id="review-comment" required rows="3" placeholder="Write your experience at Aura Beauty Salon..."></textarea>
+        
+        <button type="submit">Submit Client Review</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- Our Staff Team Section -->
+  <section class="services" id="team" style="padding-top:40px;">
+    <h2>Meet Our Salon Team</h2>
+    <p style="color:var(--text-muted); margin-bottom:30px;">Our experienced & friendly team at Aura Beauty Salon in Sukuta Jabang.</p>
+    <div id="stylists-grid" class="cards"></div>
+  </section>
+
+  <!-- Online Booking Section -->
+  <section id="booking">
+    <h2>Book Appointment</h2>
+    <div id="booking-form-box">
+      <form onsubmit="handleBookingSubmit(event)">
+        <label class="form-label">Full Name *</label>
+        <input type="text" id="client-name" placeholder="Enter Full Name" required>
+
+        <label class="form-label">Phone Number *</label>
+        <input type="tel" id="client-phone" placeholder="+220 7712345" required>
+
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px;">
+          <div>
+            <label class="form-label">Select Service *</label>
+            <select id="booking-service-select" required></select>
+          </div>
+          <div>
+            <label class="form-label">Select Specialist / Staff *</label>
+            <select id="booking-stylist-select" required></select>
+          </div>
+        </div>
+
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px;">
+          <div>
+            <label class="form-label">Preferred Date</label>
+            <input type="date" id="booking-date">
+          </div>
+          <div>
+            <label class="form-label">Time Slot</label>
+            <select id="booking-time">
+              <option value="09:00 AM">09:00 AM</option>
+              <option value="10:30 AM">10:30 AM</option>
+              <option value="12:00 PM">12:00 PM</option>
+              <option value="02:00 PM">02:00 PM</option>
+              <option value="07:30 PM">07:30 PM</option>
+            </select>
+          </div>
+        </div>
+
+        <label class="form-label">Special Notes / Requests</label>
+        <textarea id="booking-notes" placeholder="Hair length, meche color preferences, etc."></textarea>
+        <!-- Salon Policy Warning -->
+        <div style="background-color: #fff3cd; border-left: 4px solid #ffc107; padding: 15px; margin: 20px 0; border-radius: 4px; font-size: 0.85rem; color: #664d03;">
+          <strong>⚠️ Booking & Deposit Policy:</strong>
+          <ul style="margin: 5px 0 0 20px; padding: 0;">
+            <li>Please arrive exactly on time. Appointments are automatically canceled if you are more than 15 minutes late.</li>
+            <li>A non-refundable deposit may be required for large services (like Full Glam Bridal).</li>
+          </ul>
+        </div>
+        <button type="submit">Book Now ✨</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- Track Appointment Section -->
+  <section id="lookup">
+    <h2>Track Your Reservation</h2>
+    <p style="color:var(--text-muted); margin-bottom:20px;">Enter your Booking Code (e.g., AURA-4821) or Phone Number to check status.</p>
+    
+    <div style="max-width:500px; margin:0 auto; display:flex; gap:10px;">
+      <input type="text" id="lookup-code" placeholder="Enter Booking Code (AURA-XXXX)" style="margin:0;">
+      <button onclick="lookupBooking()" style="width:auto; padding:0 25px;">Track</button>
+    </div>
+
+    <div id="lookup-result"></div>
+  </section>
+
+  <!-- FAQ Section -->
+  <section id="faq" style="background-color: var(--blush-card); padding: 40px 20px; border-radius: var(--radius-md); margin-bottom: 40px; text-align:center;">
+    <h2>Frequently Asked Questions</h2>
+    <div style="text-align: left; max-width: 800px; margin: 0 auto; margin-top: 20px;">
+      
+      <div style="margin-bottom: 20px; border-bottom: 1px solid #ddd; padding-bottom: 15px;">
+        <h4 style="color: var(--onyx-dark); margin-bottom: 5px;">Do I need to wash my hair before braiding?</h4>
+        <p style="color: var(--text-muted); font-size: 0.95rem;">We offer "Hair Wash & Deep Conditioning" for D400. If you prefer to wash it yourself, please make sure it is completely detangled and product-free before your appointment.</p>
+      </div>
+
+      <div style="margin-bottom: 20px; border-bottom: 1px solid #ddd; padding-bottom: 15px;">
+        <h4 style="color: var(--onyx-dark); margin-bottom: 5px;">Do I provide my own meche?</h4>
+        <p style="color: var(--text-muted); font-size: 0.95rem;">It is up to you! We have a Knotless Braid package for D1800 that includes 2 packets of premium meche. If you bring your own, the service is only D700.</p>
+      </div>
+
+      <div style="margin-bottom: 20px; border-bottom: 1px solid #ddd; padding-bottom: 15px;">
+        <h4 style="color: var(--onyx-dark); margin-bottom: 5px;">How long do lash extensions last?</h4>
+        <p style="color: var(--text-muted); font-size: 0.95rem;">With proper care, our volume lashes can last 3-4 weeks. We recommend coming in for a refill every 2-3 weeks to keep them looking full.</p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Contact Us Section -->
+  <section id="contact">
+    <h2>Contact Us</h2>
+    
+    <div class="contact-info-grid">
+      <div class="contact-card">
+        <h4>📍 Location</h4>
+        <p>Sukuta jabang traffic lights, The Gambia</p>
+      </div>
+      
+      <div class="contact-card">
+        <h4>📞 Phone & WhatsApp</h4>
+        <p>+220 294 2008 / 5299888 / 3033014</p>
+      </div>
+      
+      <div class="contact-card">
+        <h4>📷 Instagram</h4>
+        <p>@aurabeautysalon</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Staff & Admin Dashboard Section -->
+  <section id="admin-portal" style="display:none;">
+    <div style="text-align:left;">
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px; border-bottom:2px solid #EEE; padding-bottom:15px;">
+        <h2 style="margin:0;">Salon Staff & Management Portal</h2>
+        <button class="btn-admin" onclick="toggleAdminPortal()">Close Portal ✖</button>
+      </div>
+
+      <div class="admin-stats-grid">
+        <div class="admin-stat-card">
+          <div id="admin-rev-val" class="admin-stat-num">D0</div>
+          <div style="font-size:0.85rem; color:var(--text-muted)">Total Estimated Revenue</div>
+        </div>
+        <div class="admin-stat-card">
+          <div id="admin-apt-count" class="admin-stat-num">0</div>
+          <div style="font-size:0.85rem; color:var(--text-muted)">Total Appointments</div>
+        </div>
+      </div>
+
+      <h3 style="margin-bottom:15px; font-family:'Playfair Display', serif;">Appointments Schedule</h3>
+      <div class="table-responsive" style="margin-bottom:30px;">
+        <table>
+          <thead>
+            <tr>
+              <th>Ref Code</th>
+              <th>Client</th>
+              <th>Service</th>
+              <th>Date & Time</th>
+              <th>Price</th>
+              <th>Status</th>
+              <th>Update Status</th>
+            </tr>
+          </thead>
+          <tbody id="admin-tbody"></tbody>
+        </table>
+      </div>
+
+      <!-- Add Service Form -->
+      <div style="background:var(--blush-card); padding:20px; border-radius:var(--radius-sm); max-width:600px;">
+        <h4 style="margin-bottom:10px;">Add New Service to Menu</h4>
+        <form id="add-srv-form" onsubmit="handleAddService(event)">
+          <input type="text" id="new-srv-name" required placeholder="Service Name (e.g. Knotless Braids Medium)">
+          <select id="new-srv-cat">
+            <option value="Braids & Twists">Braids & Twists</option>
+            <option value="Lash Extensions">Lash Extensions</option>
+            <option value="Makeup">Makeup</option>
+            <option value="Hair Cuts">Hair Cuts</option>
+            <option value="Nails & Brows">Nails & Brows</option>
+          </select>
+          <input type="number" id="new-srv-price" required placeholder="Price in Dalasi (e.g. 1500)">
+          <button type="submit">Add Service</button>
+        </form>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Staff Timeclock Portal Section -->
+  <section id="staff-portal" style="display:none;">
+    <div style="text-align:left; background:var(--blush-card); padding:30px; border-radius:var(--radius-md); box-shadow:var(--shadow-soft);">
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px; border-bottom:2px solid #EEE; padding-bottom:15px;">
+        <h2 style="margin:0;">Staff Clock-In Portal</h2>
+        <button class="btn-admin" onclick="toggleStaffPortal()">Close Portal ✖</button>
+      </div>
+      
+      <div style="max-width: 400px; margin: 0 auto;">
+        <label class="form-label">Select Staff Member</label>
+        <select id="staff-select-clock">
+           <option value="Amie Cham">Amie Cham</option>
+           <option value="Amadou Cham">Amadou Jatta</option>
+           <option value="Yamai Jatta">Yamai Jatta</option>
+        </select>
+        
+        <div style="display:flex; gap:10px; margin-top:20px;">
+           <button type="button" style="background-color:#4CAF50;" onclick="clockInOut('Clock In')">⏱️ Clock In</button>
+           <button type="button" style="background-color:#f44336;" onclick="clockInOut('Clock Out')">🏃 Clock Out</button>
+        </div>
+      </div>
+      
+      <h3 style="margin-top:40px; font-family:'Playfair Display', serif;">Recent Attendance Log</h3>
+      <div class="table-responsive" style="margin-top:20px;">
+        <table>
+          <thead>
+            <tr>
+              <th>Staff Member</th>
+              <th>Action</th>
+              <th>Time</th>
+              <th>Date</th>
+            </tr>
+          </thead>
+          <tbody id="attendance-tbody"></tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>© 2026 Aura Beauty Salon • Sukuta Jabang, The Gambia. All Rights Reserved.</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

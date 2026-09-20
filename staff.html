@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aura Staff Portal</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+  <style>
+    body { background-color: var(--floral-white); padding-top: 50px; }
+    .portal-container { max-width: 600px; margin: 0 auto; background: var(--blush-card); padding: 30px; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
+  </style>
+</head>
+<body>
+  
+  <div class="portal-container">
+    <div style="text-align: center; margin-bottom: 30px;">
+      <h2 style="font-family:'Playfair Display', serif; color: #070707;">⏱️ Aura Staff Portal</h2>
+      <p style="color: #666;">Secure Clock-in & Attendance Register</p>
+    </div>
+
+    <div style="margin-bottom: 30px;">
+      <label style="font-weight:600; font-size:0.9rem; margin-bottom:8px; display:block;">Select Staff Member</label>
+      <select id="staff-select-clock" style="width: 100%; padding: 12px; margin-bottom: 20px; border: 1px solid #ccc; border-radius: 8px; font-family:'Poppins', sans-serif;">
+         <option value="Amie Cham">Amie Cham</option>
+         <option value="Fatima Jallow">Mariama jallow</option>
+         <option value="Amadou Cham">Amadou Jatta</option>
+         <option value="Yamai Jatta">Yamai Jatta</option>
+      </select>
+      
+      <div style="display:flex; gap:10px;">
+         <button type="button" style="flex:1; background-color:#4CAF50; color:white; padding:15px; border:none; border-radius:8px; font-weight:bold; cursor:pointer;" onclick="clockInOut('Clock In')">⏱️ Clock In</button>
+         <button type="button" style="flex:1; background-color:#f44336; color:white; padding:15px; border:none; border-radius:8px; font-weight:bold; cursor:pointer;" onclick="clockInOut('Clock Out')">🏃 Clock Out</button>
+      </div>
+    </div>
+
+    <h3 style="margin-top:40px; font-family:'Playfair Display', serif;">Today's Attendance Log</h3>
+    <div style="margin-top:20px; background: white; border-radius: 8px; padding: 10px; overflow-x: auto;">
+      <table style="width: 100%; border-collapse: collapse; text-align: left; font-size:0.9rem;">
+        <thead>
+          <tr style="border-bottom: 2px solid #eee;">
+            <th style="padding: 10px;">Staff</th>
+            <th style="padding: 10px;">Action</th>
+            <th style="padding: 10px;">Time</th>
+            <th style="padding: 10px;">Date</th>
+          </tr>
+        </thead>
+        <tbody id="attendance-tbody"></tbody>
+      </table>
+    </div>
+    
+    <div style="text-align: center; margin-top: 30px;">
+      <a href="index.html" style="color: #C89B8A; text-decoration: none; font-weight: bold;">← Back to Main Website</a>
+    </div>
+  </div>
+
+  <script>
+    function clockInOut(action) {
+      const staffName = document.getElementById('staff-select-clock').value;
+      const now = new Date();
+      const time = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+      const date = now.toISOString().split('T')[0];
+      
+      const log = { staffName, action, time, date };
+      let logs = JSON.parse(localStorage.getItem('aura_attendance')) || [];
+      
+      logs.unshift(log); // Add new entry to the top
+      localStorage.setItem('aura_attendance', JSON.stringify(logs));
+      
+      alert(`${staffName} successfully ${action === 'Clock In' ? 'clocked in' : 'clocked out'} at ${time}`);
+      renderAttendance();
+    }
+
+    function renderAttendance() {
+      const tbody = document.getElementById('attendance-tbody');
+      if (!tbody) return;
+      const logs = JSON.parse(localStorage.getItem('aura_attendance')) || [];
+      
+      tbody.innerHTML = logs.map(l => `
+        <tr style="border-bottom: 1px solid #f9f9f9;">
+          <td style="padding: 10px;"><strong>${l.staffName}</strong></td>
+          <td style="padding: 10px;">
+             <span style="padding: 4px 8px; border-radius: 4px; font-weight: bold; font-size: 0.75rem; background-color: ${l.action === 'Clock In' ? '#e8f5e9' : '#ffebee'}; color: ${l.action === 'Clock In' ? '#2e7d32' : '#c62828'};">
+                ${l.action}
+             </span>
+          </td>
+          <td style="padding: 10px; color:#555;">${l.time}</td>
+          <td style="padding: 10px; color:#555;">${l.date}</td>
+        </tr>
+      `).join('');
+    }
+
+    // Load logs on page start
+    document.addEventListener('DOMContentLoaded', renderAttendance);
+  </script>
+</body>
+</html>

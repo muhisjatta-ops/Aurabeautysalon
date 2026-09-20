@@ -1,0 +1,23 @@
+{
+  "name": "aura-beauty-salon",
+  "version": "1.0.0",
+  "description": "Full-stack web application for Aura Beauty Salon in Gambia",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "cors": "^2.8.5"
+  },
+  "keywords": [
+    "salon",
+    "beauty",
+    "gambia",
+    "booking",
+    "express"
+  ],
+  "author": "Aura Beauty Salon",
+  "license": "MIT"
+}
